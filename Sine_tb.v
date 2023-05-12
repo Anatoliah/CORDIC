@@ -8,6 +8,8 @@ module Sine_tb();
     wire [15:0] Sine_o;
     wire Done_o;
 
+     integer angle;
+
 
 
     Sine Sine_inst (
@@ -23,22 +25,35 @@ module Sine_tb();
         #10 Clk_i = ~Clk_i;
     end
 
+
+    
+
     initial begin
-         Clk_i = 1'b0;
+         Clk_i = 1'b1;
         Rst_i = 1'b1;
         Start_i = 1'b0;
         Angle_i = 16'h0;
         #10 Rst_i = 1'b0;
         Start_i  = 1'b1;
-        Angle_i = 16'h2000; // 45 градусов
-        #10;
+        Angle_i = 16'h0A3D ; // 45 градусов
+        #20;
 
         Start_i = 0;
-        // Wait until Done_o goes high
+        // // Wait until Done_o goes high
         while (!Done_o) #10;
         $display("Sine_o for 45 degrees: %h", Sine_o);
 
-          $finish;
+        // #250 Start_i = 1;
+        // Angle_i = 16'b1000101000111101; // 90 degrees in fixed-point representation
+        // #10;
+
+        // Start_i = 0;
+        // // Wait until Done_o goes high
+        // while (!Done_o) #10;
+        // $display("Sine_o for 90 degrees: %h", Sine_o);
+
+        // //   $finish;
     end
+
 endmodule
     

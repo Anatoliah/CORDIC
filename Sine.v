@@ -44,7 +44,7 @@ endfunction
 
 always @(posedge Clk_i) begin 
     if (Rst_i) begin 
-        x <= 16'h0;
+        x <= 16'h0;//initialize 
         y <= 16'h0;
         z <= 16'h0;
         // i <= 5'h0;

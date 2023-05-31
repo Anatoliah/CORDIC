@@ -26,6 +26,24 @@ module Sine_tb();
     end
 
 
+
+    // integer i,j,k;
+    
+
+    // reg signed [15:0] x [90:0];
+    // reg signed [15:0] y [90:0];
+    // reg signed [15:0] z [90:0];
+
+
+    // task show_vector_results; 
+    // input integer j; 
+    // input [15:0] Angle; 
+    // begin 
+    //     a_i = (j*3.14)/180;
+    //     a_o = Angle; 
+    //     a_o = a_o/ 
+
+
     
 
     initial begin
@@ -35,7 +53,7 @@ module Sine_tb();
         Angle_i = 16'h0;
         #10 Rst_i = 1'b0;
         Start_i  = 1'b1;
-        Angle_i = 16'h0A3D ; // 45 градусов
+        Angle_i = 16'd5461 ; // 30 градусов
         #20;
 
         Start_i = 0;
@@ -47,12 +65,7 @@ module Sine_tb();
         // Angle_i = 16'b1000101000111101; // 90 degrees in fixed-point representation
         // #10;
 
-        // Start_i = 0;
-        // // Wait until Done_o goes high
-        // while (!Done_o) #10;
-        // $display("Sine_o for 90 degrees: %h", Sine_o);
-
-        // //   $finish;
+        
     end
 
 endmodule

@@ -1,0 +1,63 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/modeltech64_10.6d/examples
+T_opt
+!s110 1685528223
+VY3DIYdJ[6iN^E>:EigdIY2
+04 7 4 work Sine_tb fast 0
+=22-a85e45cdf29f-64771e9f-1b5-3d24
+o-quiet -auto_acc_if_foreign -work work +acc
+Z0 tCvgOpt 0
+n@_opt
+OL;O;10.6d;65
+vSine
+Z1 !s110 1685528221
+!i10b 1
+!s100 lmKXSMUAOS7eeM;j16PU60
+IcTM]MZ3ccQcM?L@AOeLdn2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dC:/Projects/CORDIC/CORDIC
+w1685528178
+8C:/Projects/CORDIC/CORDIC/Sine.v
+FC:/Projects/CORDIC/CORDIC/Sine.v
+L0 3
+Z4 OL;L;10.6d;65
+r1
+!s85 0
+31
+Z5 !s108 1685528221.000000
+!s107 C:/Projects/CORDIC/CORDIC/Sine.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Projects/CORDIC/CORDIC/Sine.v|
+!i113 0
+Z6 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R0
+n@sine
+vSine_tb
+R1
+!i10b 1
+!s100 QZUFe3?oY?2<>ITH4<lLh1
+IWlI4WQEJ5IlRkhMCQbo:N0
+R2
+R3
+w1685528218
+8C:/Projects/CORDIC/CORDIC/Sine_tb.v
+FC:/Projects/CORDIC/CORDIC/Sine_tb.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Projects/CORDIC/CORDIC/Sine_tb.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Projects/CORDIC/CORDIC/Sine_tb.v|
+!i113 0
+R6
+R0
+n@sine_tb

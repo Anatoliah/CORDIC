@@ -182,7 +182,7 @@ always @(posedge Clk_i ) begin
     end
     else begin 
         if (SignPrev[1]) begin 
-            Sine_o <= ~yPipe[16]+ 1'b0 ;
+            Sine_o <= ~yPipe[16]+ 1'b1 ;
         end
         else begin 
             Sine_o <= yPipe[16];

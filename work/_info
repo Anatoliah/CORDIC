@@ -7,57 +7,99 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-dC:/modeltech64_10.6d/examples
+Z0 dC:/modeltech64_10.6d/examples
 T_opt
-!s110 1685528223
-VY3DIYdJ[6iN^E>:EigdIY2
-04 7 4 work Sine_tb fast 0
-=22-a85e45cdf29f-64771e9f-1b5-3d24
-o-quiet -auto_acc_if_foreign -work work +acc
-Z0 tCvgOpt 0
+!s110 1685958293
+VKRBDZEa:04z:UXgGnNkhm2
+Z1 04 7 4 work Sine_tb fast 0
+=84-a85e45cdf29f-647dae94-38e-1af8
+Z2 o-quiet -auto_acc_if_foreign -work work +acc
+Z3 tCvgOpt 0
 n@_opt
-OL;O;10.6d;65
-vSine
-Z1 !s110 1685528221
+Z4 OL;O;10.6d;65
+R0
+T_opt1
+!s110 1685930912
+VYAc=fkFGlY7d3QMBHN=i22
+04 4 4 work Sine fast 0
+=1-a85e45cdf29f-647d43a0-11a-2a20
+o-quiet -auto_acc_if_foreign -work work
+R3
+n@_opt1
+R4
+R0
+T_opt2
+!s110 1685961222
+V66CgkM6X`aFVLhLSzZhm@1
+R1
+=11-a85e45cdf29f-647dba06-74-1394
+R2
+R3
+n@_opt2
+R4
+vRot
+Z5 !s110 1685961220
 !i10b 1
-!s100 lmKXSMUAOS7eeM;j16PU60
-IcTM]MZ3ccQcM?L@AOeLdn2
-Z2 VDg1SIo80bB@j0V0VzS_@n1
-Z3 dC:/Projects/CORDIC/CORDIC
-w1685528178
+!s100 5kBA;mM?XacS0OKaQn<hD1
+I<MnGeX8TJnJ1z;g9?7>HG2
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 dC:/Projects/CORDIC/CORDIC
+w1685956914
+8C:/Projects/CORDIC/CORDIC/Rot.v
+FC:/Projects/CORDIC/CORDIC/Rot.v
+L0 1
+Z8 OL;L;10.6d;65
+r1
+!s85 0
+31
+Z9 !s108 1685961220.000000
+!s107 C:/Projects/CORDIC/CORDIC/Rot.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Projects/CORDIC/CORDIC/Rot.v|
+!i113 0
+Z10 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R3
+n@rot
+vSine
+R5
+!i10b 1
+!s100 E1>TF^im4CJAaP7=mR2NM0
+I<jb4_0Ukh>89EQgioHgBW0
+R6
+R7
+w1685961112
 8C:/Projects/CORDIC/CORDIC/Sine.v
 FC:/Projects/CORDIC/CORDIC/Sine.v
 L0 3
-Z4 OL;L;10.6d;65
+R8
 r1
 !s85 0
 31
-Z5 !s108 1685528221.000000
+R9
 !s107 C:/Projects/CORDIC/CORDIC/Sine.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Projects/CORDIC/CORDIC/Sine.v|
 !i113 0
-Z6 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-R0
+R10
+R3
 n@sine
 vSine_tb
-R1
+R5
 !i10b 1
-!s100 QZUFe3?oY?2<>ITH4<lLh1
-IWlI4WQEJ5IlRkhMCQbo:N0
-R2
-R3
-w1685528218
+!s100 DY=Lo^5P7VE>=NDV>d?7l0
+ImCWdW^`2<?DVznN<<B_T;2
+R6
+R7
+w1685961215
 8C:/Projects/CORDIC/CORDIC/Sine_tb.v
 FC:/Projects/CORDIC/CORDIC/Sine_tb.v
 L0 1
-R4
+R8
 r1
 !s85 0
 31
-R5
+R9
 !s107 C:/Projects/CORDIC/CORDIC/Sine_tb.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Projects/CORDIC/CORDIC/Sine_tb.v|
 !i113 0
-R6
-R0
+R10
+R3
 n@sine_tb

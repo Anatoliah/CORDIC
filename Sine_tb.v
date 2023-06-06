@@ -39,7 +39,7 @@ module Sine_tb();
         Angle_i = 16'h0;
         #10 Rst_i = 1'b0;
         Start_i  = 1'b1;
-        Angle_i = 16'h3333  ; // 30 градусов
+        Angle_i = 16'h1999  ; // 30 градусов
         #20;
             Start_i = 0;
 

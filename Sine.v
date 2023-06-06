@@ -182,7 +182,7 @@ always @(posedge Clk_i ) begin
     end
     else begin 
         if (SignPrev[1]) begin 
-            Sine_o <= ~yPipe[16]+ 1'b1 ;
+            Sine_o <= ~yPipe[16]+ 1'b0 ;
         end
         else begin 
             Sine_o <= yPipe[16];
@@ -211,7 +211,7 @@ end
                 .Rst_i(Rst_i),
                 .X_i(xPipe[g]),
                 .Y_i(yPipe[g]),
-                .Sign_i(phaseDiffPipe[g][15:0]),
+                .Sign_i(phaseDiffPipe[g][15]),
                 .X_o(xPipe[g+1]),
                 .Y_o(yPipe[g+1]),
                 .start_flag(start_flag_o)

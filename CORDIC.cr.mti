@@ -5,13 +5,11 @@ Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
 Top level modules:
 	Rot
 
-} {} {}} C:/Projects/CORDIC/CORDIC/Sine.v {2 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/CORDIC/Sine.v
+} {} {}} C:/Projects/CORDIC/CORDIC/Sine_tb.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/CORDIC/Sine_tb.v
 Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
--- Compiling module Sine
-** Warning: C:/Projects/CORDIC/CORDIC/Sine.v(64): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-** Warning: C:/Projects/CORDIC/CORDIC/Sine.v(65): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+-- Compiling module Sine_tb
 
 Top level modules:
-	Sine
+	Sine_tb
 
 } {} {}}

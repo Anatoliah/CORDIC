@@ -35,7 +35,7 @@ reg  [1:0] SignPipe [15:0];
 reg  [1:0] Sign; 
 reg   [1:0] SignPrev;
 
-reg signed  [31:0] currPhase;
+reg signed  [15:0] currPhase;
 reg [15:0] phaseAcc;
 
 
@@ -168,7 +168,8 @@ always @(posedge Clk_i ) begin
             if (SignPrev[0] && start_flag) begin 
                 Cos_o <= ~xPipe[16] + 1'b1;
             end
-            else begin 
+            else begin
+                if ((SignPrev[0]==0) && start_flag) 
                 Cos_o <= xPipe[16];
             end
         end
@@ -181,11 +182,13 @@ always @(posedge Clk_i ) begin
         Sine_o <= 16'h0;
     end
     else begin 
-        if (SignPrev[1]) begin 
-            Sine_o <= ~yPipe[16]+ 1'b0 ;
+        if (SignPrev[1] && start_flag) begin 
+            Sine_o <= ~yPipe[16]+ 1'b1 ;
         end
-        else begin 
-            Sine_o <= yPipe[16];
+        else begin
+            if ((SignPrev[1]==0) && start_flag) begin 
+                Sine_o <= yPipe[16];
+            end
         end
     end
 end

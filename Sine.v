@@ -3,7 +3,7 @@
 module Sine  (
     input Clk_i,
     input Rst_i,
-    input  signed [15:0] Angle_i,
+    input  [15:0] Angle_i,
     input Start_i,
 
     output reg signed [15:0] Sine_o,
@@ -19,7 +19,7 @@ module Sine  (
 localparam [15:0] angle270 = 3 << 14;
 localparam [15:0] angle180 = 1 << 15;
 localparam [15:0] angle90 = 1 << 14;
-parameter [15:0] initValue = 16'h9999;
+parameter [15:0] initValue = 16'h4CCC;
 
 //================================================================================
 //  REG/WIRE DECLARATIONS
@@ -61,24 +61,23 @@ assign start_flag_o = start_flag;
 
 
 
-assign precompAngle [0] = 16'd2949120;  // theta = 45.000000
-assign precompAngle [1] = 16'd1740967;   // theta = 22.500000
-assign precompAngle [2] = 16'd919879;   // theta = 11.250000
-assign precompAngle [3] = 16'd466945;   // theta = 5.625000
-assign precompAngle [4] = 16'd234379;    // theta = 2.812500
-assign precompAngle [5] = 16'd117304;    // theta = 1.406250
-assign precompAngle [6] = 16'd58666;    // theta = 0.703125
-assign precompAngle [7] = 16'd29335;    // theta = 0.351562
-assign precompAngle [8] = 16'd14668;     // theta = 0.175781
-assign precompAngle [9] = 16'd7334;     // theta = 0.087891
-assign precompAngle [10] = 16'd3667;    // theta = 0.043945
-assign precompAngle [11] = 16'd1833;     // theta = 0.021973
-assign precompAngle [12] = 16'd917;     // theta = 0.010986
-assign precompAngle [13] = 16'd458;     // theta = 0.005493
-assign precompAngle [14] = 16'd229;     // theta = 0.002747
-assign precompAngle [15] = 16'd114;     // theta = 0.001373
 
-
+assign precompAngle [0] = 16'd8190;  // theta = 45.000000
+assign precompAngle [1] = 16'd4834;   // theta = 22.500000
+assign precompAngle [2] = 16'd2554;   // theta = 11.250000
+assign precompAngle [3] = 16'd1296;   // theta = 5.625000
+assign precompAngle [4] = 16'd650;    // theta = 2.812500
+assign precompAngle [5] = 16'd325;    // theta = 1.406250
+assign precompAngle [6] = 16'd162;    // theta = 0.703125
+assign precompAngle [7] = 16'd81;    // theta = 0.351562
+assign precompAngle [8] = 16'd40;     // theta = 0.175781
+assign precompAngle [9] = 16'd20;     // theta = 0.087891
+assign precompAngle [10] = 16'd10;    // theta = 0.043945
+assign precompAngle [11] = 16'd5;     // theta = 0.021973
+assign precompAngle [12] = 16'd2;     // theta = 0.010986
+assign precompAngle [13] = 16'd1;     // theta = 0.005493
+assign precompAngle [14] = 16'd0;     // theta = 0.002747
+assign precompAngle [15] = 16'd0;     // theta = 0.001373
 
 
 
@@ -169,7 +168,7 @@ always @(posedge Clk_i ) begin
                 Cos_o <= ~xPipe[16] + 1'b1;
             end
             else begin
-                if ((SignPrev[0]==0) && start_flag) 
+                if (SignPrev[0]==0 && start_flag) 
                 Cos_o <= xPipe[16];
             end
         end

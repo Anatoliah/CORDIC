@@ -19,10 +19,10 @@ n@_opt
 Z4 OL;O;10.6d;65
 R0
 T_opt1
-!s110 1686108779
-Vc9k23DTi3N>i5ca1mmMcA1
+!s110 1686132846
+VAZ7zZVXCQfMN>J9bG>;[]3
 R1
-=25-a85e45cdf29f-647ffa6b-13-a84
+=1-a85e45cdf29f-6480586e-19a-5050
 R2
 R3
 n@_opt1
@@ -37,69 +37,134 @@ R3
 n@_opt2
 R4
 R0
+vcordic_nco
+!s110 1686132249
+!i10b 1
+!s100 oeGzWM9QGAIC2I1`@40EX2
+I?4>ckJe_Y@N;<Z]kb=ND@1
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 dC:/Projects/CORDIC/CORDIC
+w1686132244
+Z7 8C:/Projects/CORDIC/CORDIC/CORDICNCO.v
+Z8 FC:/Projects/CORDIC/CORDIC/CORDICNCO.v
+L0 6
+Z9 OL;L;10.6d;65
+r1
+!s85 0
+31
+!s108 1686132249.000000
+Z10 !s107 C:/Projects/CORDIC/CORDIC/CORDICNCO.v|
+Z11 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Projects/CORDIC/CORDIC/CORDICNCO.v|
+!i113 0
+Z12 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R3
+vCORDICNCO
+Z13 !s110 1686132840
+!i10b 1
+!s100 F:[8L4>XgF]:V@Fz=il@H1
+I6IMSZM70_HVHE_nM=n[bz1
+R5
+R6
+w1686132483
+R7
+R8
+L0 6
+R9
+r1
+!s85 0
+31
+Z14 !s108 1686132839.000000
+R10
+R11
+!i113 0
+R12
+R3
+n@c@o@r@d@i@c@n@c@o
+vCORDICROT
+R13
+!i10b 1
+!s100 M7@VQUYESzIc]]a2RzfN?3
+IQ79d:L7^QmBGdjG<[JS8J3
+R5
+R6
+w1686132206
+8C:/Projects/CORDIC/CORDIC/CORDICROT.v
+FC:/Projects/CORDIC/CORDIC/CORDICROT.v
+L0 21
+R9
+r1
+!s85 0
+31
+!s108 1686132840.000000
+!s107 C:/Projects/CORDIC/CORDIC/CORDICROT.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Projects/CORDIC/CORDIC/CORDICROT.v|
+!i113 0
+R12
+R3
+n@c@o@r@d@i@c@r@o@t
 vRot
-Z5 !s110 1686108776
+Z15 !s110 1686132839
 !i10b 1
 !s100 5kBA;mM?XacS0OKaQn<hD1
 I<MnGeX8TJnJ1z;g9?7>HG2
-Z6 VDg1SIo80bB@j0V0VzS_@n1
-Z7 dC:/Projects/CORDIC/CORDIC
-w1685956914
+R5
+R6
+w1686132811
 8C:/Projects/CORDIC/CORDIC/Rot.v
 FC:/Projects/CORDIC/CORDIC/Rot.v
 L0 1
-Z8 OL;L;10.6d;65
+R9
 r1
 !s85 0
 31
-Z9 !s108 1686108776.000000
+R14
 !s107 C:/Projects/CORDIC/CORDIC/Rot.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Projects/CORDIC/CORDIC/Rot.v|
 !i113 0
-Z10 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R12
 R3
 n@rot
 vSine
-R5
+R15
 !i10b 1
-!s100 m^]ITcJ5WiYMFM=9`>:^A1
-IPfjlM_nZ[dY<lHY;iPYlJ3
+!s100 [L]>zCDO6lbWKHj65FTc[0
+Iz@PCjHad?6MMF>=a?:[hj3
+R5
 R6
-R7
-w1686108772
+w1686130576
 8C:/Projects/CORDIC/CORDIC/Sine.v
 FC:/Projects/CORDIC/CORDIC/Sine.v
 L0 3
-R8
+R9
 r1
 !s85 0
 31
-!s108 1686108775.000000
+R14
 !s107 C:/Projects/CORDIC/CORDIC/Sine.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Projects/CORDIC/CORDIC/Sine.v|
 !i113 0
-R10
+R12
 R3
 n@sine
 vSine_tb
-R5
+R15
 !i10b 1
-!s100 zSegmX88cRDJzo:M4_LbU2
-IUSWZXgFB_j@haeO2=NYN[1
+!s100 0l9[?Pd[@>ToNoVM9Z]?43
+I@VST]_9_C8n1F24[XzkPL1
+R5
 R6
-R7
-w1686108557
+w1686132786
 8C:/Projects/CORDIC/CORDIC/Sine_tb.v
 FC:/Projects/CORDIC/CORDIC/Sine_tb.v
-L0 1
-R8
+L0 2
+R9
 r1
 !s85 0
 31
-R9
+R14
 !s107 C:/Projects/CORDIC/CORDIC/Sine_tb.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Projects/CORDIC/CORDIC/Sine_tb.v|
 !i113 0
-R10
+R12
 R3
 n@sine_tb

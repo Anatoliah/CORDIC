@@ -1,15 +1,22 @@
-C:/Projects/CORDIC/CORDIC/Rot.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/CORDIC/Rot.v
+C:/Projects/CORDIC/CORDIC/CORDICROT.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/CORDIC/CORDICROT.v
 Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
--- Compiling module Rot
+-- Compiling module CORDICROT
 
 Top level modules:
-	Rot
+	CORDICROT
 
-} {} {}} C:/Projects/CORDIC/CORDIC/Sine_tb.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/CORDIC/Sine_tb.v
+} {} {}} C:/Projects/CORDIC/CORDIC/Sine.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/CORDIC/Sine.v
 Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
--- Compiling module Sine_tb
+-- Compiling module Sine
 
 Top level modules:
-	Sine_tb
+	Sine
+
+} {} {}} C:/Projects/CORDIC/CORDIC/CORDICNCO.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/CORDIC/CORDICNCO.v
+Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
+-- Compiling module CORDICNCO
+
+Top level modules:
+	CORDICNCO
 
 } {} {}}

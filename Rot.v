@@ -1,24 +1,25 @@
 module Rot 
-
+#(parameter ODatWidth = 16,
+parameter ShiftNum = 1)
 
 (
     input Clk_i,
     input Rst_i,
-    input signed [15:0] X_i,
-    input signed [15:0] Y_i,
+    input signed [ODatWidth-1:0] X_i,
+    input signed [ODatWidth-1:0] Y_i,
     input  Sign_i,
-    output reg signed [15:0] X_o,
-    output reg signed [15:0] Y_o,
-    input start_flag
+    input Val_i,
+    output reg signed [ODatWidth-1:0] X_o,
+    output reg signed [ODatWidth-1:0] Y_o,
+    output reg Val_o
+    // input start_flag
     );
-
-    parameter ShiftNum = 1;
 
 //================================================================================
 //  REG/WIRE DECLARATIONS
 //================================================================================
-wire [15:0] XshftR;
-wire [15:0] YshftR;
+wire [ODatWidth-1:0] XshftR;
+wire [ODatWidth-1:0] YshftR;
 
 //================================================================================
 //  ASSIGNMENTS
@@ -32,12 +33,27 @@ wire [15:0] YshftR;
 //================================================================================
 
 
+
+    
+
+    always @(posedge Clk_i) begin
+        if (Rst_i) begin
+            Val_o	<= 1'b0;
+        end else if	(Val_i)	begin
+            Val_o	<= Val_i;
+        end	else	begin
+            Val_o	<=	1'b0;
+        end
+        end
+
+      
+
     always @(posedge Clk_i) begin 
         if (Rst_i) begin 
-            X_o <= 0;
-            Y_o <= 0;
+            X_o <= {ODatWidth{1'b0}};
+            Y_o <= {ODatWidth{1'b0}};
         end 
-            else if (start_flag) begin 
+            else if (Val_i)   begin 
                 if (Sign_i) begin 
                     X_o <= X_i + YshftR;
                     Y_o <= Y_i - XshftR;

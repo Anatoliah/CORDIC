@@ -1,42 +1,59 @@
 
 
-module Sine  (
+module Sine #(parameter ODatWidth = 16,
+                parameter PhIncWidth = 16) 
+(
     input Clk_i,
     input Rst_i,
-    input  [15:0] Angle_i,
-    input Start_i,
+    input  [PhIncWidth-1:0] PhInc_i,
+    // input Start_i,
+    input Val_i,
 
-    output reg signed [15:0] Sine_o,
+    output reg signed [ODatWidth-1:0] Sine_o,
     output reg Done_o,
-    output  reg  signed  [15:0] Cos_o ,
-    output start_flag_o 
+    output  reg   [ODatWidth-1:0] Cos_o ,
+    output reg Val_o,
+    output reg ValW_o
 );
 
 //================================================================================
 //  LOCALPARAMS
 //================================================================================
 
-localparam [15:0] angle270 = 3 << 14;
-localparam [15:0] angle180 = 1 << 15;
-localparam [15:0] angle90 = 1 << 14;
-parameter [15:0] initValue = 16'h4CCC;
+localparam [PhIncWidth-1:0] angle270 = 3 << (PhIncWidth-2);
+localparam [PhIncWidth-1:0] angle180 = 1 << (PhIncWidth-1);
+localparam [PhIncWidth-1:0] angle90 = 1 << (PhIncWidth-2);
+
+parameter [ODatWidth:0] initValue = 16'h4CCC;
+// parameter ODatWidth = 16;
+// parameter PhIncWidth = 16;
+parameter IterNum = 16;
+parameter EnSinN = 0;
+parameter EnSinW = 0; 
+
+
 
 //================================================================================
 //  REG/WIRE DECLARATIONS
 //================================================================================
 
-wire [15:0] precompAngle [15:0];
-wire signed [15:0] xPipe [16:0];
-wire signed [15:0] yPipe [16:0];
+wire [PhIncWidth-1:0] precompAngle [ODatWidth-1:0];
+wire  [ODatWidth-1:0] xPipe [IterNum:0];
+wire  [ODatWidth-1:0] yPipe [IterNum:0];
+wire [IterNum:0] valPipe;
+reg  [PhIncWidth-1:0] phaseDiffPipe [IterNum-1:0];
+reg  [1:0] SignPipe [IterNum-1:0];
 
 
-reg  [15:0] phaseDiffPipe [15:0];
-reg  [1:0] SignPipe [15:0];
+
 reg  [1:0] Sign; 
 reg   [1:0] SignPrev;
 
-reg signed  [15:0] currPhase;
-reg [15:0] phaseAcc;
+reg   [PhIncWidth-1:0] currPhase;
+reg [PhIncWidth-1:0] phaseAcc;
+reg [2:0 ] valSr;
+reg [9:0] cnt;
+reg iter; 
 
 
 
@@ -56,8 +73,12 @@ integer i ;
 
 assign xPipe[0] = initValue; 
 assign yPipe[0] = initValue;
+assign valPipe[0] = valSr[2];
+assign ValW = (!iter)? 1'b1:1'b0;
 
-assign start_flag_o = start_flag; 
+
+
+// assign start_flag_o = start_flag; 
 
 
 
@@ -81,16 +102,16 @@ assign precompAngle [15] = 16'd0;     // theta = 0.001373
 
 
 
-always @(posedge Clk_i) begin 
-    if (Rst_i ) begin 
-        start_flag <= 1'b0;
+
+
+
+always @(posedge Clk_i or posedge Rst_i) begin 
+    if (Rst_i) begin 
+        phaseAcc <= {PhIncWidth{1'b0}};
     end
     else begin 
-        if (!Start_i) begin 
-            start_flag <= 1'b1;
-        end
-        else begin 
-            start_flag <= 1'b0;
+        if (Val_i) begin 
+            phaseAcc <= phaseAcc + PhInc_i;
         end
     end
 end
@@ -99,29 +120,44 @@ end
 
 always @(posedge Clk_i) begin 
     if (Rst_i) begin 
-        phaseAcc <= 16'h0;
+        iter <= 1'b0;
     end
     else begin 
-        if (start_flag) begin 
-            phaseAcc <= phaseAcc + Angle_i;
+        if (cnt == 10'd1024) begin 
+            iter <= 1'b1;
         end
         else begin 
-            phaseAcc <= 16'h0;
+            iter <= 1'b0;
         end
     end
 end
 
 
 
-
-always @(posedge Clk_i ) begin 
+always @(posedge Clk_i) begin 
     if (Rst_i) begin 
-        currPhase <= 16'h0;
+        cnt <= 10'h0;
+    end
+    else begin 
+        if ((Sine_o != 16'h0) && (!iter)&& (EnSinW == 0)) begin 
+            cnt <= cnt + 10'h1;
+        end
+        else begin 
+            if (iter) begin 
+                cnt <= 10'h0;
+            end
+        end
+    end
+end
+
+always @(posedge Clk_i or posedge Rst_i ) begin 
+    if (Rst_i) begin 
+        currPhase <= {PhIncWidth{1'b0}};
         Sign <= 2'b0;
     end
     else begin 
      if (phaseAcc > angle270 ) begin 
-            currPhase <= 16'h0 - phaseAcc;
+            currPhase <= {PhIncWidth{1'b0}} - phaseAcc;
             Sign <= 2'b10 ;
         end
         else if (phaseAcc > angle180) begin 
@@ -140,15 +176,27 @@ always @(posedge Clk_i ) begin
 end
 
 
+//================================================================================
+//  PIPE
+//================================================================================
 
+
+always @(posedge Clk_i) begin
+    if (Rst_i) begin 
+        valSr <= 3'b0;
+    end
+    else begin 
+        valSr <= {valSr[1:0], Val_i};
+    end
+end
 
 
 always @(posedge Clk_i) begin 
     phaseDiffPipe[0] <= currPhase - precompAngle[0];
     SignPipe[0] <= Sign;
-    for (i = 1; i < 16; i = i+1) begin 
+    for (i = 1; i < IterNum; i = i+1) begin 
         SignPipe[i] <= SignPipe[i-1];
-            if (phaseDiffPipe[i-1][15:0]) begin 
+            if (phaseDiffPipe[i-1][PhIncWidth-1]) begin 
                 phaseDiffPipe[i] <= phaseDiffPipe[i-1] + precompAngle[i];
             end
             else begin 
@@ -159,70 +207,97 @@ end
 
 
 
-always @(posedge Clk_i ) begin 
-    if (Rst_i) begin 
-        Cos_o <= 16'h0;
-    end
-        else begin 
-            if (SignPrev[0] && start_flag) begin 
-                Cos_o <= ~xPipe[16] + 1'b1;
-            end
-            else begin
-                if (SignPrev[0]==0 && start_flag) 
-                Cos_o <= xPipe[16];
-            end
-        end
-end
+//    generate 
+//         for (g = 0; g < IterNum ; g = g + 1 ) begin : cordic_pipeline
+//          Rot #(
+//             .ODatWidth(ODatWidth),
+//             .ShiftNum(g+1)) 
+//              Rot_inst (
+//                 .Clk_i(Clk_i),
+//                 .Rst_i(Rst_i),
+//                 .X_i(xPipe[g]),
+//                 .Y_i(yPipe[g]),
+//                 .Val_i(valPipe[g]),
+//                 .Sign_i(phaseDiffPipe[g][PhIncWidth-1]),
+//                 .X_o(xPipe[g+1]),
+//                 .Y_o(yPipe[g+1]),
+//                 .Val_o(valPipe[g+1])
 
+//             );
 
-generate
-always @(posedge Clk_i ) begin 
-    if (Rst_i) begin 
-        Sine_o <= 16'h0;
-    end
-    else begin 
-        if (SignPrev[1] && start_flag) begin 
-            Sine_o <= ~yPipe[16]+ 1'b1 ;
-        end
-        else begin
-            if ((SignPrev[1]==0) && start_flag) begin 
-                Sine_o <= yPipe[16];
-            end
-        end
-    end
-end
-endgenerate
+//         end
+//     endgenerate
 
-
-always @(posedge Clk_i) begin 
-    if (Rst_i) begin 
-        SignPrev <= 2'b0;
-    end
-    else begin 
-        SignPrev <= SignPipe[15];
-    end
-end
-
-
-   generate 
-        for (g = 0; g < 16 ; g = g + 1 ) begin : cordic_pipeline
-         Rot #(
-            .ShiftNum(g+1)) 
-             Rot_inst (
+    generate 
+        for (g =0; g < IterNum; g = g + 1) begin : cordic_pipeline
+            CORDICROT #(
+                .ODAT_W(ODatWidth),
+                .SHIFT(g+1))
+            CORDICROT_inst (
                 .Clk_i(Clk_i),
                 .Rst_i(Rst_i),
                 .X_i(xPipe[g]),
                 .Y_i(yPipe[g]),
-                .Sign_i(phaseDiffPipe[g][15]),
+                .Val_i(valPipe[g]),
+                .Sign_i(phaseDiffPipe[g][PhIncWidth-1]),
                 .X_o(xPipe[g+1]),
                 .Y_o(yPipe[g+1]),
-                .start_flag(start_flag_o)
-
+                .Val_o(valPipe[g+1])
             );
 
         end
     endgenerate
 
+generate
+    if (EnSinN) begin 
+        always @(posedge Clk_i) begin 
+            if (Rst_i) begin 
+                Sine_o <= {ODatWidth{1'b0}};
+            end
+            else begin 
+                if (SignPrev[1]) begin 
+                    Sine_o <= yPipe[IterNum];
+                end
+                else begin 
+                    Sine_o <= ~yPipe[IterNum] + {{(ODatWidth-1){1'b0}},1'b1};
+                end
+            end
+        end
+    end
+    else begin
+always @(posedge Clk_i ) begin 
+    if (Rst_i) begin 
+        Sine_o <= {ODatWidth{1'b0}};
+    end
+    else begin 
+        if (SignPrev[1]) begin 
+            Sine_o <= ~yPipe[IterNum]+ {{(ODatWidth-1){1'b0}},1'b1} ;
+        end
+        else begin 
+                Sine_o <= yPipe[IterNum];
+            end
+    end
+end
+    end
+endgenerate
+
+always @(posedge Clk_i ) begin 
+    if (Rst_i) begin 
+        Cos_o <= {ODatWidth{1'b0}};
+        SignPrev <= 2'b0;
+        Val_o <= 1'b0;
+    end
+        else begin 
+            if (SignPrev[0]) begin 
+                Cos_o <= ~xPipe[IterNum] + {{(ODatWidth-1){1'b0}},1'b1};
+            end
+            else begin
+                Cos_o <= xPipe[IterNum];
+            end
+            SignPrev <= SignPipe[IterNum-1];
+            Val_o <= valPipe[IterNum];
+        end
+end
 
 
 

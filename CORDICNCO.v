@@ -3,7 +3,7 @@
     The module implements CORDIC algorithm
 */
 
-module \CORDICNCO (
+module CORDICNCO (
     clk_i,
     rst_i,
     val_i,

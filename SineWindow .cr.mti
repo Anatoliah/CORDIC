@@ -1,0 +1,15 @@
+C:/Projects/CORDIC/SineWindow/SineWindow_tb.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/SineWindow/SineWindow_tb.v
+Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
+-- Compiling module SineWidnow_tb
+
+Top level modules:
+	SineWidnow_tb
+
+} {} {}} C:/Projects/CORDIC/SineWindow/CORDICROT.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/SineWindow/CORDICROT.v
+Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
+-- Compiling module CORDICROT
+
+Top level modules:
+	CORDICROT
+
+} {} {}}

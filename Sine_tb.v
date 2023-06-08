@@ -17,8 +17,9 @@ module Sine_tb();
     Sine Sine_inst (
         .Clk_i(Clk_i),
         .Rst_i(Rst_i),
-        .Angle_i(Angle_i),
-        .Start_i(Start_i),
+        .PhInc_i(Angle_i),
+        // .Start_i(Start_i),
+        .Val_i(!Start_i),
         .Sine_o(Sine_o),
         .Done_o(Done_o)
     );
@@ -26,6 +27,8 @@ module Sine_tb();
     always begin 
         #5 Clk_i = ~Clk_i;
     end
+
+
 
 
 
@@ -51,7 +54,7 @@ module Sine_tb();
         Angle_i = 16'h0;
         #10 Rst_i = 1'b0;
         Start_i  = 1'b1;
-        Angle_i = 16'h51E  ; // 30 градусов
+        Angle_i = 16'h30  ; // 30 градусов
         #20;
             Start_i = 0;
 

@@ -5,12 +5,19 @@ Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
 Top level modules:
 	CORDICROT
 
-} {} {}} C:/Projects/CORDIC/CORDIC/Sine.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/CORDIC/Sine.v
+} {} {}} C:/Projects/CORDIC/CORDIC/Rot.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/CORDIC/Rot.v
 Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
--- Compiling module Sine
+-- Compiling module Rot
 
 Top level modules:
-	Sine
+	Rot
+
+} {} {}} C:/Projects/CORDIC/CORDIC/Sine_tb2.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/CORDIC/Sine_tb2.v
+Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
+-- Compiling module Sine_tb2
+
+Top level modules:
+	Sine_tb2
 
 } {} {}} C:/Projects/CORDIC/CORDIC/CORDICNCO.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/CORDIC/CORDICNCO.v
 Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
@@ -18,5 +25,12 @@ Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
 
 Top level modules:
 	CORDICNCO
+
+} {} {}} C:/Projects/CORDIC/CORDIC/Sine_tb.v {1 {vlog -work work -vopt -stats=none C:/Projects/CORDIC/CORDIC/Sine_tb.v
+Model Technology ModelSim SE-64 vlog 10.6d Compiler 2018.02 Feb 24 2018
+-- Compiling module Sine_tb
+
+Top level modules:
+	Sine_tb
 
 } {} {}}
